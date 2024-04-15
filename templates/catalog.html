@@ -1,0 +1,28 @@
+{% extends 'main/layout.html'%}
+{% load mptt_tags %}
+{% block title %}Каталог{% endblock %}
+
+{% block content %}
+<div class="container-page-catalog">
+    <div class="catalog-p">
+        <p>Каталог</p>
+    </div>
+
+    <div class="container-categories">
+    {% for category in categories %}
+        <div>
+            <h1>{{ category.title }}</h1>
+            {% for subcategory in category.subcategory_set.all %}
+                <div>
+                    <a class='subcatalog-link' href="catalog/{{ subcategory.id }}">{{ subcategory.title }}</a>
+                </div>
+            {% endfor %}
+        </div>
+    {% endfor %}
+    </div>
+
+
+
+
+</div>
+{% endblock %}

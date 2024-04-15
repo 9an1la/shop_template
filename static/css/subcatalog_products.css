@@ -1,0 +1,62 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+.container-hz {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    padding-top: 25px;
+    min-height: 800px;
+    gap: 20px;
+    background-color: #c88ef4;
+}
+
+.subcatalog-title {
+    display: flex;
+    justify-content: center;
+    width: 100px;
+    height: 50px;
+    margin: 0 auto;
+    margin-bottom: 20px;
+}
+
+.subcatalog-products {
+    display: table-column;
+    margin-left: 100px;
+}
+
+.card-list {
+    margin-top: 30px;
+    display: flex;
+    flex-wrap: wrap;
+    padding: 0;
+    gap: 30px;
+    margin-left: 150px;
+    list-style: none;
+}
+
+.card {
+    border-top: 3px solid #000;
+    box-sizing: border-box;
+    flex-wrap: wrap;
+    width: 300px;
+    text-align: center;
+    border-bottom: 3px solid #000;
+    background: #7409be;
+}
+
+.card-img-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+.card img {
+    display: block;
+    width: 200px;
+    height: 200px;
+}

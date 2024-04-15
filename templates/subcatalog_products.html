@@ -1,0 +1,42 @@
+{% extends 'main/layout.html'%}
+{% load static %}
+{% block title %}{{ subcatalog.title }}{% endblock %}
+
+{% block content %}
+    <div  class="container-hz">
+        <div class="subcatalog-title">
+            <h2>{{ subcatalog.title }}</h2>
+        </div>
+
+<!--        <div class="subcatalog-products">-->
+<!--            {% for product in products %}-->
+<!--                <h1>{{ product.category }}</h1>-->
+<!--                <h1>{{ product.title }}</h1>-->
+<!--                <h1>{{ product.manufacturer }}</h1>-->
+<!--                <h1>{{ product.amount }}</h1>-->
+<!--                <br>-->
+<!--            {% endfor %}-->
+<!--        </div>-->
+        <ul class="card-list">
+            {% for product in products %}
+                <li>
+                    <div class="card">
+                        <div class="card-img-container">
+                            {% if product.prod_pict %}
+                                <img src="{{ product.prod_pict.url }}" alt="Prod Pict">
+                            {% else %}
+                                <img src="#" alt="Prod Pict">
+                            {% endif %}
+                        </div>
+                        <div class="prod-desc">
+                            <h4>{{ product.manufacturer }} {{ product.title }}</h4>
+                            <span class="price">{{ product.price }} рублей<br></span>
+                            <span class="amount">Осталось: {{ product.amount }}<br></span>
+                            <a href="/" class="button">В корзину</a>
+                        </div>
+                    </div>
+                </li>
+            {% endfor %}
+        </ul>
+    </div>
+{% endblock %}

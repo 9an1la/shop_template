@@ -1,0 +1,17 @@
+* {
+    padding: 0;
+    margin: 0;
+}
+
+.container-page-about {
+    display: flex;
+    padding-top: 25px;
+    min-height: 800px;
+    gap: 20px;
+    background-color: #c88ef4;
+    padding-left: 400px;
+}
+
+.about-p {
+    text-align: center;
+}

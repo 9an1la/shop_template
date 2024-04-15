@@ -1,0 +1,109 @@
+{% load static %}
+<!doctype html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>{% block title %}{% endblock %}</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="{% static 'main/css/header_footer.css' %}">
+    <link rel="stylesheet" href="{% static 'main/css/main.css' %}">
+    <link rel="stylesheet" href="{% static 'main/css/promotions.css' %}">
+    <link rel="stylesheet" href="{% static 'main/css/catalog.css' %}">
+    <link rel="stylesheet" href="{% static 'main/css/subcatalog_products.css' %}">
+    <link rel="stylesheet" href="{% static 'main/css/about.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+<body>
+    <header class="page_header">
+        <nav class="navigation">
+            <a href="/">
+                <img src="" alt="logo" class="logo">
+            </a>
+            <ul class="navigation_list">
+                <li>
+                    <a href="/" class="navigation_title_main">Главная</a>
+                </li>
+                <li>
+                    <a href="/promotions" class="navigation_title_main">Акции</a>
+                </li>
+                <li>
+                    <a href="/catalog" class="navigation_title_main">Каталог</a>
+                </li>
+                <li>
+                    <a href="/about" class="navigation_title_main">О нас</a>
+                </li>
+            </ul>
+            <button class="navigation_button" type="button">
+                <i class="fa-solid fa-cart-shopping" id="nav_basket"></i>
+            </button>
+            <ul class="navigation_user_list">
+                <li>
+                    <img src="" alt="Аватарка" class="user_avatar">
+                </li>
+                <li>
+                    <a href="#" class="user_lk">Личный кабинет</a>
+                </li>
+            </ul>
+        </nav>
+        <div class="navigation-search">
+            <form action="search/" method="get">
+                <div class="search">
+                    {{ form.search_field }}
+                    <button type="submit" class="search-button"><i class="fa-solid fa-magnifying-glass"></i></button>
+                </div>
+
+
+            </form>
+        </div>
+    </header>
+
+    <main class="page_main">
+        {% block content %}
+        {% endblock %}
+    </main>
+
+    <footer class="page_footer">
+        <ul class="footer_list">
+            <li>
+                <a href="#" class="footer_link">Программа лояльности</a>
+            </li>
+            <li>
+                <a href="#" class="footer_link">Политика конфиденциальности</a>
+            </li>
+            <li>
+                <a href="#" class="footer_link">Договор оферты</a>
+            </li>
+        </ul>
+
+        <ul class="footer_page_text">
+            <li>
+                <p class="footer_text">ООО "Gadget Shop"</p>
+            </li>
+            <li>
+                <p class="footer_text">© Все права защищены</p>
+            </li>
+        </ul>
+
+        <ul class="footer_contacts">
+            <li>
+                <a href="#">
+                    <i class="fa-brands fa-vk" id="vk_icon"></i>
+                </a>
+            </li>
+            <li>
+                <a href="#">
+                    <i class="fa-brands fa-telegram" id="tg_icon"></i>
+                </a>
+            </li>
+            <li>
+                <a href="#">
+                    <i class="fa-solid fa-square-envelope" id="gmail_icon"></i>
+                </a>
+            </li>
+        </ul>
+    </footer>
+</body>
+</html>

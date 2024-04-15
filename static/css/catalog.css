@@ -1,0 +1,28 @@
+* {
+    padding: 0;
+    margin: 0;
+}
+
+.container-page-catalog {
+    display: flex;
+    flex-direction: column;
+    padding-top: 25px;
+    min-height: 800px;
+    gap: 20px;
+    background-color: #c88ef4;
+}
+
+.catalog-p {
+    text-align: center;
+}
+
+.container-categories {
+    display: flex;
+    justify-content: space-evenly;
+    align-content: center
+}
+
+.subcatalog-link {
+    text-decoration: none;
+    color: #FFF;
+}
