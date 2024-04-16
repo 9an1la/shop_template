@@ -97,6 +97,18 @@ body {
     margin-top: 25px;
 }
 
+.logout_button {
+    background-color: transparent;
+    border: none;
+    display: block;
+    font-weight: 500;
+    font-size: 25px;
+    line-height: 30px;
+    text-decoration: none;
+    color: #000000;
+    margin-top: 25px;
+}
+
 .navigation-search {
     display: block;
     text-align: center;

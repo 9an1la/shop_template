@@ -6,7 +6,8 @@ from apps.shop.models import *
 
 
 def home(request):
-    return render(request, 'templates/main.html')
+    form = Search()
+    return render(request, 'templates/main.html', {'form': form})
 
 
 def promotions(request):

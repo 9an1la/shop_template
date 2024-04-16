@@ -40,12 +40,27 @@
                 <i class="fa-solid fa-cart-shopping" id="nav_basket"></i>
             </button>
             <ul class="navigation_user_list">
+                {% if user.is_authenticated %}
                 <li>
                     <img src="" alt="Аватарка" class="user_avatar">
                 </li>
                 <li>
                     <a href="#" class="user_lk">Личный кабинет</a>
                 </li>
+                <li>
+                    <form method="post" action="{% url 'logout' %}">
+                        {% csrf_token %}
+                        <button type="submit" class="logout_button">Выход</button>
+                    </form>
+                </li>
+                {% else %}
+                <li>
+                    <a href="{% url 'login' %}" class="user_lk">Вход</a>
+                </li>
+                <li>
+                    <a href="#" class="user_lk">Регистрация</a>
+                </li>
+                {% endif %}
             </ul>
         </nav>
         <div class="navigation-search">
