@@ -9,8 +9,10 @@ https://docs.djangoproject.com/en/5.0/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/5.0/ref/settings/
 """
-
+import os.path
+import dotenv
 from pathlib import Path
+
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -19,7 +21,11 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/5.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-w^*#j2rhk)^is@5o6dm#qc0oo!w*pku2-q*gau#nh2iz=2cqa='
+dotenv_file = os.path.join(BASE_DIR, '.env')  # <- Load .env file
+if os.path.isfile(dotenv_file):
+    dotenv.load_dotenv(dotenv_file)
+
+SECRET_KEY = os.environ['SECRET_KEY']
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -35,6 +41,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'apps.shop',
 ]
 
 MIDDLEWARE = [
@@ -72,10 +79,20 @@ WSGI_APPLICATION = 'shop_template.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
 
+NAME = os.environ['NAME']
+USER = os.environ['USER']
+PASSWORD = os.environ['PASSWORD']
+HOST = os.environ['HOST']
+PORT = os.environ['PORT']
+
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR/'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': NAME,
+        'USER': USER,
+        'PASSWORD': PASSWORD,
+        'HOST': HOST,
+        'PORT': PORT,
     }
 }
 
