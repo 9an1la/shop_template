@@ -2,5 +2,27 @@
 {% block title %}Результаты поиска{% endblock %}
 
 {% block content %}
-
+<div class="search-container">
+    <ul class="card-list">
+        {% for product in product_search %}
+            <li>
+                <div class="card">
+                    <div class="card-img-container">
+                        {% if product.prod_pict %}
+                            <img src="{{ product.prod_pict.url }}" alt="Prod Pict">
+                        {% else %}
+                            <img src="#" alt="Prod Pict">
+                        {% endif %}
+                    </div>
+                    <div class="prod-desc">
+                        <h4>{{ product.manufacturer }} {{ product.title }}</h4>
+                        <span class="price">{{ product.price }} рублей<br></span>
+                        <span class="amount">Осталось: {{ product.amount }}<br></span>
+                        <a href="/" class="button">В корзину</a>
+                    </div>
+                </div>
+            </li>
+        {% endfor %}
+    </ul>
+</div>
 {% endblock %}

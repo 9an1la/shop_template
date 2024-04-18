@@ -14,6 +14,7 @@
     <link rel="stylesheet" href="{% static 'css/catalog.css' %}">
     <link rel="stylesheet" href="{% static 'css/subcatalog_products.css' %}">
     <link rel="stylesheet" href="{% static 'css/about.css' %}">
+    <link rel="stylesheet" href="{% static 'css/search.css' %}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 </head>
 <body>
@@ -64,9 +65,9 @@
             </ul>
         </nav>
         <div class="navigation-search">
-            <form action="search/" method="get">
+            <form action="{% url 'search' %}" method="get">
                 <div class="search">
-                    {{ form.search_field }}
+                    <input type="search" type="text" name="q" class="search-field" placeholder="Поиск по сайту">
                     <button type="submit" class="search-button"><i class="fa-solid fa-magnifying-glass"></i></button>
                 </div>
 
