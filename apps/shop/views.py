@@ -25,7 +25,10 @@ class Search(ListView):
     paginate_by = 5
 
     def get_queryset(self):
-        return Product.objects.filter(title__icontains=self.request.GET.get('q'))
+        title_search = Product.objects.filter(title__icontains=self.request.GET.get('q'))
+        manufacturer_search = Product.objects.filter(manufacturer__icontains=self.request.GET.get('q'))
+        res = title_search | manufacturer_search
+        return res.distinct()
 
     def get_context_data(self, *, object_list=None, **kwargs):
         context = super().get_context_data(**kwargs)
