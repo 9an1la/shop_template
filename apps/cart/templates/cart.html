@@ -1,0 +1,54 @@
+{% extends 'templates/layout.html'%}
+{% load static %}
+{% block title %}Корзина{% endblock %}
+
+{% block content %}
+<div  class="container-hz">
+    <h1>Ваша корзина</h1>
+    <table class="cart">
+        <thead>
+            <tr>
+                <th>Фото товара</th>
+                <th>Название товара</th>
+                <th>Кол-во товара</th>
+                <th>Удалить</th>
+                <th>Цена за 1 шт.</th>
+                <th>Общая цена</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for item in cart %}
+            {% with product=item.product %}
+            <tr>
+                <td>
+                <a href="{{ product.get_absolute_url }}">
+                {% if product.image %}
+                    <img src="{{ product.image.url }}" alt="Prod Pict">
+                {% else %}
+                    <img src="#" alt="Prod Pict">
+                {% endif %}
+                </a>
+                </td>
+                <td>{{ product.title }}</td>
+                <td>
+                    <form action="{% url 'cart:cart_add' product.id %}" method="post">
+                        {{ item.update_quantity_form.quantity }}
+                        {{ item.update_quantity_form.update }}
+                        <input type="submit" value="Обновить">
+                        {% csrf_token %}
+                    </form>
+                </td>
+                <td><a href="{% url 'cart:cart_remove' product.id %}">Удалить</a></td>
+                <td class="num">{{ item.price }} руб.</td>
+                <td class="num">{{ item.total_price }} руб.</td>
+            </tr>
+            {% endwith %}
+        {% endfor %}
+        </tbody>
+    </table>
+    <p class="text-right">
+        <a href="{% url 'shop:catalog' %}" class="button light">Продолжить покупки</a>
+        <a href="#" class="button">Оформить заказ</a>
+    </p>
+</div>
+{% endblock %}

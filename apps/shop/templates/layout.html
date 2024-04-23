@@ -36,11 +36,23 @@
                 <li>
                     <a href="/about" class="navigation_title_main">О нас</a>
                 </li>
-            </ul>
-            <button class="navigation_button" type="button">
-                <i class="fa-solid fa-cart-shopping" id="nav_basket"></i>
-            </button>
-            <ul class="navigation_user_list">
+
+                <li>
+                    <button class="navigation_button" type="button">
+                        <a href="/cart/"><i class="fa-solid fa-cart-shopping" id="nav_basket"></i></a>
+                    </button>
+                    {% with total_items=cart|length %}
+                        {% if cart|length > 0 %}
+                            <a href="{% url 'cart:cart_detail' %}">
+                            {{ total_items }} шт.
+                            {{ cart.get_total_price }} руб.
+                            </a>
+                        {% else %}
+                            корзина пуста.
+                        {% endif %}
+                    {% endwith %}
+                </li>
+
                 {% if user.is_authenticated %}
                 <li>
                     <img src="" alt="фото" class="user_avatar">
@@ -62,6 +74,10 @@
                     <a href="#" class="user_lk">Регистрация</a>
                 </li>
                 {% endif %}
+            </ul>
+
+            <ul class="navigation_user_list">
+
             </ul>
         </nav>
         <div class="navigation-search">

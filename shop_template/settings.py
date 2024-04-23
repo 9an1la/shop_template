@@ -13,7 +13,6 @@ import os.path
 import dotenv
 from pathlib import Path
 
-
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -42,7 +41,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'apps.shop',
-    'apps.users'
+    'apps.users',
+    'apps.cart',
 ]
 
 MIDDLEWARE = [
@@ -62,7 +62,8 @@ TEMPLATES = [
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
         'DIRS': [
             BASE_DIR/'apps/shop/',
-            BASE_DIR/'apps/users/'
+            BASE_DIR/'apps/users/',
+            BASE_DIR/'apps/cart/',
         ],
         'APP_DIRS': True,
         'OPTIONS': {
@@ -71,6 +72,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'apps.cart.context_processors.cart',
             ],
         },
     },
@@ -148,3 +150,6 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
 
 LOGIN_REDIRECT_URL = 'home'
 LOGOUT_REDIRECT_URL = 'home'
+
+# cart session key
+CART_SESSION_ID = 'cart'

@@ -1,7 +1,7 @@
 from django.shortcuts import render, get_object_or_404
 from django.views.generic import ListView
 from apps.shop.models import *
-
+from apps.cart.forms import CartAddProductForm
 # Create your views here.
 
 
@@ -48,7 +48,8 @@ def subcatalog_products(request, subcategory_slug=None):
 
 def product_detail(request, id, slug):
     product = get_object_or_404(Product, id=id, slug=slug, available=True)
-    return render(request, 'templates/product_detail.html', {'product': product})
+    cart_product_form = CartAddProductForm()
+    return render(request, 'templates/product_detail.html', {'product': product, 'cart_product_form': cart_product_form})
 
 
 def about(request):
