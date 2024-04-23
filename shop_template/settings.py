@@ -141,6 +141,9 @@ STATICFILES_DIRS = [
     BASE_DIR / "static",
 ]
 
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
+
 # for app users
 
 LOGIN_REDIRECT_URL = 'home'

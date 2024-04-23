@@ -60,3 +60,18 @@
     width: 200px;
     height: 200px;
 }
+
+.product-page {
+    display: flex;
+}
+
+.filter-list {
+    display: block;
+    margin-right: 20px;
+    padding-right:20px;
+    background-color: white;
+}
+
+.prod-list {
+    display: block;
+}

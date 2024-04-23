@@ -1,0 +1,23 @@
+{% extends 'templates/layout.html'%}
+{% load static %}
+{% block title %}{% endblock %}
+
+{% block content %}
+<div  class="container-hz">
+    <div class="card-img-container">
+        {% if product.image %}
+            <img src="{{ product.image.url }}" alt="Prod Pict">
+        {% else %}
+            <img src="#" alt="Prod Pict">
+        {% endif %}
+    </div>
+    <div class="prod-desc">
+        <h1>{{ product.manufacturer }} {{ product.title }}</h1>
+        <h2>
+             <a href="{{ product.subcategory.get_absolute_url }}">{{ product.subcategory }}</a>
+        </h2>
+        <p>Цена - {{ product.price }} руб.</p>
+        {{ product.description|linebreaks }}
+    </div>
+</div>
+{% endblock %}

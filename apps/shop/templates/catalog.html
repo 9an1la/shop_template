@@ -14,15 +14,11 @@
             <h1>{{ category.title }}</h1>
             {% for subcategory in category.subcategory_set.all %}
                 <div>
-                    <a class='subcatalog-link' href="catalog/{{ subcategory.id }}">{{ subcategory.title }}</a>
+                    <a class='subcatalog-link' href="catalog/{{ subcategory.slug }}">{{ subcategory.title }}</a>
                 </div>
             {% endfor %}
         </div>
     {% endfor %}
     </div>
-
-
-
-
 </div>
 {% endblock %}

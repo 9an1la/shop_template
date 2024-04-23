@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from django.views.generic import ListView
 from apps.shop.models import *
 
@@ -36,10 +36,19 @@ class Search(ListView):
         return context
 
 
-def subcatalog_products(request, pk):
-    subcatelog = Subcategory.objects.get(category_id=pk)
-    products = Product.objects.filter(subcategory_id=pk)
-    return render(request, 'templates/subcatalog_products.html', {'subcatalog': subcatelog , 'products': products})
+def subcatalog_products(request, subcategory_slug=None):
+    subcategory = None
+    subcategories = Subcategory.objects.all()
+    products = Product.objects.filter(available=True)
+    if subcategory_slug:
+        subcategory = get_object_or_404(Subcategory, slug=subcategory_slug)
+        products = products.filter(subcategory=subcategory)
+    return render(request, 'templates/subcatalog_products.html', {'subcategory': subcategory, 'products': products})
+
+
+def product_detail(request, id, slug):
+    product = get_object_or_404(Product, id=id, slug=slug, available=True)
+    return render(request, 'templates/product_detail.html', {'product': product})
 
 
 def about(request):
