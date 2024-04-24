@@ -48,7 +48,7 @@
     </table>
     <p class="text-right">
         <a href="{% url 'shop:catalog' %}" class="button light">Продолжить покупки</a>
-        <a href="#" class="button">Оформить заказ</a>
+        <a href="{% url 'orders:order_create' %}" class="button">Оформить заказ</a>
     </p>
 </div>
 {% endblock %}

@@ -1,0 +1,10 @@
+{% extends 'templates/layout.html'%}
+{% block title %}Заказ оформлен{% endblock %}
+
+{% block content %}
+<div class="container-hz">
+    <h1>Спасибо за заказ</h1>
+    <p>Ваш заказ был успешно оформлен.
+    Номер вашего заказа <strong>{{ order.id }}</strong>.</p>
+</div>
+{% endblock %}

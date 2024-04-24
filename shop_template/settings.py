@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'apps.shop',
     'apps.users',
     'apps.cart',
+    'apps.orders',
 ]
 
 MIDDLEWARE = [
@@ -64,6 +65,7 @@ TEMPLATES = [
             BASE_DIR/'apps/shop/',
             BASE_DIR/'apps/users/',
             BASE_DIR/'apps/cart/',
+            BASE_DIR/'apps/orders/',
         ],
         'APP_DIRS': True,
         'OPTIONS': {
