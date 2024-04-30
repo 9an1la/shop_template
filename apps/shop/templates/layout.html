@@ -58,7 +58,7 @@
                     <p>{{ user.username }}</p>
                 </li>
                 <li>
-                    <img src="" alt="фото" class="user_avatar">
+                    <img src="{{ user.profile.photo.url }}" alt="фото" class="user_avatar">
                 </li>
                 <li>
                     <a href="{% url 'dashboard' %}" class="user_lk">Личный кабинет</a>
