@@ -1,0 +1,9 @@
+{% extends 'templates/layout.html' %}
+
+{% block title %}Личный кабинет{% endblock %}
+
+{% block content %}
+    <h1>Личный кабинет</h1>
+    <p>Вы можете <a href="{% url 'edit' %}">редактировать профиль</a>
+    или <a href="{% url 'password_change' %}">сменить пароль</a></p>
+{% endblock %}

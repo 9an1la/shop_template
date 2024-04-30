@@ -55,10 +55,13 @@
 
                 {% if user.is_authenticated %}
                 <li>
+                    <p>{{ user.username }}</p>
+                </li>
+                <li>
                     <img src="" alt="фото" class="user_avatar">
                 </li>
                 <li>
-                    <a href="#" class="user_lk">Личный кабинет</a>
+                    <a href="{% url 'dashboard' %}" class="user_lk">Личный кабинет</a>
                 </li>
                 <li>
                     <form method="post" action="{% url 'logout' %}">
@@ -71,7 +74,7 @@
                     <a href="{% url 'login' %}" class="user_lk">Вход</a>
                 </li>
                 <li>
-                    <a href="#" class="user_lk">Регистрация</a>
+                    <a href="{% url 'register' %}" class="user_lk">Регистрация</a>
                 </li>
                 {% endif %}
             </ul>
@@ -93,6 +96,18 @@
     </header>
 
     <main class="page_main">
+        {% if messages %}
+            <ul class="messages">
+                {% for message in messages %}
+                    <li class="{{ message.tags }}">
+                        {{ message|safe }}
+                        <a href="#" class="close">x</a>
+                    </li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+
+
         {% block content %}
         {% endblock %}
     </main>
