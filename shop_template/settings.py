@@ -32,7 +32,7 @@ SECRET_KEY = os.environ['SECRET_KEY']
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['shop.com', 'localhost', '127.0.0.1']
 
 # Application definition
 
@@ -47,6 +47,9 @@ INSTALLED_APPS = [
     'apps.shop',
     'apps.cart',
     'apps.orders',
+
+    'social_django',
+    'django_extensions',
 ]
 
 MIDDLEWARE = [
@@ -136,7 +139,9 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.0/howto/static-files/
 
-STATIC_URL = 'static/'
+STATIC_URL = '/static/'
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
@@ -162,7 +167,13 @@ LOGOUT_REDIRECT_URL = 'shop:home'
 AUTHENTICATION_BACKENDS = [
     'django.contrib.auth.backends.ModelBackend',
     'apps.users.authentication.EmailAuthBackend',
+    'social_core.backends.vk.VKOAuth2',
 ]
+
+# OAuth2 for VK
+
+SOCIAL_AUTH_VK_OAUTH2_KEY = os.environ['VK_KEY']
+SOCIAL_AUTH_VK_OAUTH2_SECRET = os.environ['VK_SECRET_KEY']
 
 # cart session key
 CART_SESSION_ID = 'cart'

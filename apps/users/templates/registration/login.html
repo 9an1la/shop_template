@@ -7,6 +7,11 @@
 {% if form.errors %}
     <p>Неверный логин или пароль</p>
 {% endif %}
+    <ul>
+        <li class="vk">
+            <a href="{% url 'social:begin' 'vk-oauth2' %}">Вход через VK</a>
+        </li>
+    </ul>
     <p>Если у вас нету аккаунта, то вы можете его
         <a href="{% url 'register' %}">создать</a></p>
     <form action="{% url 'login' %}" method="post">

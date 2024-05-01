@@ -4,3 +4,8 @@ psycopg2
 pillow
 celery
 flower
+WeasyPrint
+social-auth-app-django
+django-extensions
+Werkzeug
+pyOpenSSL
