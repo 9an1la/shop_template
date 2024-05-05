@@ -17,35 +17,76 @@
             </tr>
         </thead>
         <tbody>
-        {% for item in cart %}
-            {% with product=item.product %}
-            <tr>
-                <td>
-                <a href="{{ product.get_absolute_url }}">
-                {% if product.image %}
-                    <img src="{{ product.image.url }}" alt="Prod Pict">
-                {% else %}
-                    <img src="#" alt="Prod Pict">
-                {% endif %}
-                </a>
-                </td>
-                <td>{{ product.title }}</td>
-                <td>
-                    <form action="{% url 'cart:cart_add' product.id %}" method="post">
-                        {{ item.update_quantity_form.quantity }}
-                        {{ item.update_quantity_form.update }}
-                        <input type="submit" value="Обновить">
-                        {% csrf_token %}
-                    </form>
-                </td>
-                <td><a href="{% url 'cart:cart_remove' product.id %}">Удалить</a></td>
-                <td class="num">{{ item.price }} руб.</td>
-                <td class="num">{{ item.total_price }} руб.</td>
+            {% for item in cart %}
+                {% with product=item.product %}
+                <tr>
+                    <td>
+                    <a href="{{ product.get_absolute_url }}">
+                    {% if product.image %}
+                        <img src="{{ product.image.url }}" alt="Prod Pict">
+                    {% else %}
+                        <img src="#" alt="Prod Pict">
+                    {% endif %}
+                    </a>
+                    </td>
+                    <td>{{ product.title }}</td>
+                    <td>
+                        <form action="{% url 'cart:cart_add' product.id %}" method="post">
+                            {{ item.update_quantity_form.quantity }}
+                            {{ item.update_quantity_form.update }}
+                            <input type="submit" value="Обновить">
+                            {% csrf_token %}
+                        </form>
+                    </td>
+                    <td><a href="{% url 'cart:cart_remove' product.id %}">Удалить</a></td>
+                    <td class="num">{{ item.price }} руб.</td>
+                    <td class="num">{{ item.total_price }} руб.</td>
+                </tr>
+                {% endwith %}
+            {% endfor %}
+            {% if cart.coupon %}
+                <tr class="subtotal">
+                    <td>Subtotal</td>
+                    <td colspan="4"></td>
+                    <td class="num">{{ cart.get_total_price|floatformat:2 }} руб.</td>
+                </tr>
+                <tr>
+                    <td>
+                        "{{ cart.coupon.code }}" coupon
+                        ({{ cart.coupon.discount }}% off)
+                    </td>
+                    <td colspan="4"></td>
+                    <td class="num neg">
+                        - {{ cart.get_discount|floatformat:2 }} руб.
+                    </td>
+                </tr>
+            {% endif %}
+            <tr class="total">
+                <td>Total</td>
+                <td colspan="4"></td>
+                <td class="num">{{ cart.get_total_price_after_discount|floatformat:2 }} руб.</td>
             </tr>
-            {% endwith %}
-        {% endfor %}
         </tbody>
     </table>
+    {% if recommended_products %}
+        <div class="recommendations">
+            <h3>People who bought this also bought</h3>
+            {% for p in recommended_products %}
+                <div class="item">
+                    <a href="{{ p.get_absolute_url }}">
+                        <img src="{% if p.image %}{{ p.image.url }}{% endif %}" alt="No image">
+                    </a>
+                    <p><a href="{{ p.get_absolute_url }}">{{ p.name }}</a></p>
+                </div>
+            {% endfor %}
+        </div>
+    {% endif %}
+    <p>Apply a coupon:</p>
+    <form action="{% url 'coupons:apply' %}" method="post">
+        {% csrf_token %}
+        {{ coupon_apply_form }}
+        <input type="submit" value="Apply">
+    </form>
     <p class="text-right">
         <a href="{% url 'shop:catalog' %}" class="button light">Продолжить покупки</a>
         <a href="{% url 'orders:order_create' %}" class="button">Оформить заказ</a>

@@ -2,6 +2,9 @@ from django.shortcuts import render, get_object_or_404
 from django.views.generic import ListView
 from apps.shop.models import *
 from apps.cart.forms import CartAddProductForm
+from apps.shop.recommender import Recommender
+
+
 # Create your views here.
 
 
@@ -49,7 +52,9 @@ def subcatalog_products(request, subcategory_slug=None):
 def product_detail(request, id, slug):
     product = get_object_or_404(Product, id=id, slug=slug, available=True)
     cart_product_form = CartAddProductForm()
-    return render(request, 'templates/product_detail.html', {'product': product, 'cart_product_form': cart_product_form})
+    r = Recommender()
+    recommended_products = r.suggest_products_for([product], 4)
+    return render(request, 'templates/product_detail.html', {'product': product, 'cart_product_form': cart_product_form, 'recommended_products': recommended_products})
 
 
 def about(request):

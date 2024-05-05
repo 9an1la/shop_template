@@ -10,8 +10,6 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/5.0/ref/settings/
 """
 import os.path
-
-import django.core.mail.backends.console
 import dotenv
 from pathlib import Path
 
@@ -38,6 +36,7 @@ ALLOWED_HOSTS = ['shop.com', 'localhost', '127.0.0.1']
 
 INSTALLED_APPS = [
     'apps.users',
+
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -47,6 +46,7 @@ INSTALLED_APPS = [
     'apps.shop',
     'apps.cart',
     'apps.orders',
+    'apps.coupons',
 
     'social_django',
     'django_extensions',
@@ -179,3 +179,8 @@ SOCIAL_AUTH_VK_OAUTH2_SECRET = os.environ['VK_SECRET_KEY']
 CART_SESSION_ID = 'cart'
 
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+
+# redis
+REDIS_HOST = 'localhost'
+REDIS_PORT = 6379
+REDIS_DB = 0

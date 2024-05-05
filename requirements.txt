@@ -5,6 +5,7 @@ pillow
 celery
 flower
 WeasyPrint
+redis
 social-auth-app-django
 django-extensions
 Werkzeug
