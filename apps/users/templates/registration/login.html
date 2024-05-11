@@ -1,28 +1,30 @@
-{% extends 'templates/layout.html' %}
+{% extends 'shop/layout.html' %}
 
 {% block title %}Вход{% endblock %}
 
-{% block content %}
-    <h2>Вход</h2>
-{% if form.errors %}
-    <p>Неверный логин или пароль</p>
-{% endif %}
-    <ul>
-        <li class="vk">
-            <a href="{% url 'social:begin' 'vk-oauth2' %}">Вход через VK</a>
-        </li>
-    </ul>
-    <p>Если у вас нету аккаунта, то вы можете его
-        <a href="{% url 'register' %}">создать</a></p>
-    <form action="{% url 'login' %}" method="post">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <input type="hidden" name="next" value="{{ next }}">
-        <p><input type="submit" value="Вход"></p>
-    </form>
-    <p>
-        <a href="{% url 'password_reset' %}">
-            Забыли пароль?
-        </a>
-    </p>
+{% block subcontent %}
+    <div class="container-bg">
+        <h2>Вход</h2>
+        {% if form.errors %}
+            <p>Неверный логин или пароль</p>
+        {% endif %}
+        <ul>
+            <li class="vk">
+                <a href="{% url 'social:begin' 'vk-oauth2' %}">Вход через VK</a>
+            </li>
+        </ul>
+        <p>Если у вас нету аккаунта, то вы можете его
+            <a href="{% url 'register' %}">создать</a></p>
+        <form action="{% url 'login' %}" method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <input type="hidden" name="next" value="{{ next }}">
+            <p><input type="submit" value="Вход"></p>
+        </form>
+        <p>
+            <a href="{% url 'password_reset' %}">
+                Забыли пароль?
+            </a>
+        </p>
+    </div>
 {% endblock %}

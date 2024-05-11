@@ -48,6 +48,7 @@ INSTALLED_APPS = [
     'apps.orders',
     'apps.coupons',
 
+    'rest_framework',
     'social_django',
     'django_extensions',
 ]
@@ -68,9 +69,7 @@ TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
         'DIRS': [
-            BASE_DIR/'apps/shop/',
-            BASE_DIR/'apps/cart/',
-            BASE_DIR/'apps/orders/',
+            BASE_DIR / 'templates',
         ],
         'APP_DIRS': True,
         'OPTIONS': {

@@ -1,10 +1,12 @@
-{% extends 'templates/layout.html' %}
+{% extends 'shop/layout.html' %}
 
 {% block title %}Добро пожаловать!{% endblock %}
 
-{% block content %}
-    <p>{{ new_user }}</p>
-    <h1>Добро пожаловать {{ new_user.first_name }}!</h1>
-    <p>Ваш аккаунт был успешно создан.
-    Вы можете <a href="{% url 'login' %}">авторизоваться</a></p>
+{% block subcontent %}
+    <div class="container-bg">
+        <p>{{ new_user }}</p>
+        <h1>Добро пожаловать {{ new_user.first_name }}!</h1>
+        <p>Ваш аккаунт был успешно создан.
+        Вы можете <a href="{% url 'login' %}">авторизоваться</a></p>
+    </div>
 {% endblock %}

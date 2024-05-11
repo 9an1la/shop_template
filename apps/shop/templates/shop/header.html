@@ -1,0 +1,96 @@
+<header class="page-header">
+
+        <div class="header-top">
+            <nav class="navigation">
+                <a href="/">
+                    <img src="" alt="logo" class="logo">
+                </a>
+                <ul class="navigation-list">
+                    <li>
+                        <a href="/" class="navigation-title-main">Главная</a>
+                    </li>
+                    <li>
+                        <a href="/promotions" class="navigation-title-main">Акции</a>
+                    </li>
+                    <li>
+                        <a href="/catalog" class="navigation-title-main">Каталог</a>
+                    </li>
+                    <li>
+                        <a href="/about" class="navigation-title-main">О нас</a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+
+        <div class="header-search">
+            <div class="navigation-search">
+                <form action="{% url 'shop:search' %}" method="get">
+                    <div class="search">
+                        <input type="search" type="text" name="q" class="search-field" placeholder="Поиск по сайту">
+                        <button type="submit" class="search-button"><i class="fa-solid fa-magnifying-glass"></i></button>
+                    </div>
+
+
+                </form>
+            </div>
+            <div class="sss">
+                <ul class="navigation-user-list">
+                    <li>
+                        {% with total_items=cart|length %}
+                            {% if cart|length > 0 %}
+                                <a href="{% url 'cart:cart_detail' %}" class="user-lk">
+                                {{ total_items }} шт.
+                                {{ cart.get_total_price }} руб.
+                                </a>
+                            {% else %}
+                                корзина пуста.
+                            {% endif %}
+                        {% endwith %}
+                    </li>
+                    <li>
+                        <a href="/cart/" class="user-lk"><i class="fa-solid fa-cart-shopping" id="nav-basket"></i></a>
+                    </li>
+<!--                    <li>-->
+<!--                        {% with total_items=cart|length %}-->
+<!--                            {% if cart|length > 0 %}-->
+<!--                                <a href="{% url 'cart:cart_detail' %}" class="user-lk">-->
+<!--                                {{ total_items }} шт.-->
+<!--                                {{ cart.get_total_price }} руб.-->
+<!--                                </a>-->
+<!--                            {% else %}-->
+<!--                                корзина пуста.-->
+<!--                            {% endif %}-->
+<!--                        {% endwith %}-->
+<!--                    </li>-->
+                {% if user.is_authenticated %}
+                    <li>
+                        <p class="user-lk">{{ user.username }}</p>
+                    </li>
+                    <li>
+                        <img src="{{ user.profile.photo.url }}" alt="фото" class="user-avatar">
+                    </li>
+                    <li>
+                        <a href="{% url 'dashboard' %}" class="user-lk">Личный кабинет</a>
+                    </li>
+                    <li>
+                        <form method="post" action="{% url 'logout' %}">
+                            {% csrf_token %}
+                            <button type="submit" class="logout-button">Выход</button>
+                        </form>
+                    </li>
+                {% else %}
+                    <li>
+                        <a href="{% url 'login' %}" class="user-lk">Вход</a>
+                    </li>
+                    <li>
+                        <a href="{% url 'register' %}" class="user-lk">Регистрация</a>
+                    </li>
+                {% endif %}
+                </ul>
+            </div>
+        </div>
+<!--        <ul class="navigation-user-list">-->
+
+<!--        </ul>-->
+
+</header>

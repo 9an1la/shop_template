@@ -1,12 +1,14 @@
-{% extends 'templates/layout.html' %}
+{% extends 'shop/layout.html' %}
 
 {% block title %}Регистрация{% endblock %}
 
-{% block content %}
-    <h1>Регистрация</h1>
-    <form method="post">
-        {{ user_form.as_p }}
-        {% csrf_token %}
-        <p><input type="submit" value="Создать аккаунт"></p>
-    </form>
+{% block subcontent %}
+    <div class="container-bg">
+        <h1>Регистрация</h1>
+        <form method="post">
+            {{ user_form.as_p }}
+            {% csrf_token %}
+            <p><input type="submit" value="Создать аккаунт"></p>
+        </form>
+    </div>
 {% endblock %}

@@ -1,9 +1,9 @@
-{% extends 'templates/layout.html' %}
+{% extends 'shop/layout.html' %}
 {% load static %}
 {% block title %}Товар: {{ product.manufacturer }} {{ product.title }}{% endblock %}
 
-{% block content %}
-<div  class="container-hz">
+{% block subcontent %}
+<div  class="container-bg">
     <div class="card-img-container">
         {% if product.image %}
             <img src="{{ product.image.url }}" alt="Prod Pict">

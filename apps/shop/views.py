@@ -1,29 +1,34 @@
 from django.shortcuts import render, get_object_or_404
 from django.views.generic import ListView
+from rest_framework.response import Response
+from rest_framework.views import APIView
+
+from apps.shop.filters import ProductFilter
 from apps.shop.models import *
 from apps.cart.forms import CartAddProductForm
 from apps.shop.recommender import Recommender
+from apps.shop.api.serializers import CategoryListSerializer
 
 
 # Create your views here.
 
 
 def home(request):
-    return render(request, 'templates/main.html')
+    return render(request, 'shop/home.html')
 
 
 def promotions(request):
-    return render(request, 'templates/promotions.html')
+    return render(request, 'shop/promotions.html')
 
 
 def catalog(request):
     categories = Category.objects.all()
     subcategories = Subcategory.objects.all()
-    return render(request, 'templates/catalog.html', {'categories': categories, 'subcategories': subcategories})
+    return render(request, 'shop/catalog.html', {'categories': categories, 'subcategories': subcategories})
 
 
 class Search(ListView):
-    template_name = 'templates/search.html'
+    template_name = 'shop/search.html'
     context_object_name = 'product_search'
     paginate_by = 5
 
@@ -43,10 +48,11 @@ def subcatalog_products(request, subcategory_slug=None):
     subcategory = None
     subcategories = Subcategory.objects.all()
     products = Product.objects.filter(available=True)
+    filters = ProductFilter(request.GET, queryset=Product.objects.all())
     if subcategory_slug:
         subcategory = get_object_or_404(Subcategory, slug=subcategory_slug)
         products = products.filter(subcategory=subcategory)
-    return render(request, 'templates/subcatalog_products.html', {'subcategory': subcategory, 'products': products})
+    return render(request, 'shop/subcatalog_products.html', {'subcategory': subcategory, 'products': products, 'filters': filters})
 
 
 def product_detail(request, id, slug):
@@ -54,8 +60,10 @@ def product_detail(request, id, slug):
     cart_product_form = CartAddProductForm()
     r = Recommender()
     recommended_products = r.suggest_products_for([product], 4)
-    return render(request, 'templates/product_detail.html', {'product': product, 'cart_product_form': cart_product_form, 'recommended_products': recommended_products})
+    return render(request, 'shop/product_detail.html',
+                  {'product': product, 'cart_product_form': cart_product_form,
+                   'recommended_products': recommended_products})
 
 
 def about(request):
-    return render(request, 'templates/about.html')
+    return render(request, 'shop/about.html')

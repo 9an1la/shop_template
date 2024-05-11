@@ -4,10 +4,11 @@
     box-sizing: border-box;
 }
 
-.container-hz {
+.container-bg {
     display: flex;
     flex-direction: column;
     flex-wrap: wrap;
+    align-items: center;
     padding-top: 25px;
     min-height: 800px;
     gap: 20px;

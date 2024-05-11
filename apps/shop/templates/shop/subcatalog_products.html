@@ -1,30 +1,29 @@
-{% extends 'templates/layout.html'%}
+{% extends 'shop/layout.html'%}
 {% load static %}
 {% block title %}{{ subcatalog.title }}{% endblock %}
 
-{% block content %}
-    <div  class="container-hz">
+{% block subcontent %}
+    <div  class="container-bg">
         <div class="subcatalog-title">
             <h2>{{ subcategory.title }}</h2>
         </div>
-<!--        <form method="get">-->
-<!--            {{ filter.form.as_p }}-->
-<!--            <button type="submit">Filter</button>-->
-<!--        </form>-->
 
         <div class="product-page">
-<!--            <div class="filter-list">-->
-<!--                <ul>-->
-<!--                    <li>-->
-<!--                        <input type="checkbox">-->
-<!--                        <span>amd</span>-->
-<!--                    </li>-->
-<!--                </ul>-->
-<!--            </div>-->
+            <div class="filters">
+                <form method="get">
+                    {% for field in filters.form %}
+                    <div class="filters-field-params">
+                        {{ field.label_tag }}
+                        <div class="filters-field">{{ field }}</div>
+                    </div>
+                    {% endfor %}
+                    <button type="submit">Filter</button>
+                </form>
+            </div>
 
             <div class="prod-list">
                 <ul class="card-list">
-                    {% for product in products %}
+                    {% for product in filters.qs %}
                         <li>
                             <div class="card">
                                 <div class="card-img-container">

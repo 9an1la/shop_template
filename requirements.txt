@@ -6,6 +6,8 @@ celery
 flower
 WeasyPrint
 redis
+djangorestframework
+django-filter
 social-auth-app-django
 django-extensions
 Werkzeug

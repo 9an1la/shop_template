@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+{% block title %}Главная страница{% endblock %}
+
+{% block content %}
+    {% include 'shop/header.html' %}
+
+    <main class="page_main">
+        {% if messages %}
+            <ul class="messages">
+                {% for message in messages %}
+                    <li class="{{ message.tags }}">
+                        {{ message|safe }}
+                        <a href="#" class="close">x</a>
+                    </li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+
+
+        {% block subcontent %}
+        {% endblock %}
+    </main>
+
+    {% include 'shop/footer.html' %}
+{% endblock %}

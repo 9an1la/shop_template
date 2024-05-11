@@ -1,0 +1,77 @@
+* {
+    padding: 0;
+    margin: 0;
+}
+
+html {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0 auto;
+    height: 100%;
+    flex-direction: column;
+    font-weight: 500;
+    font-size: 35px;
+    line-height: 43px;
+    color: #000000;
+    background: #FFFFFF;
+}
+
+.page-footer {
+    width: 100%;
+    min-height: 200px;
+    text-align: center;
+    background-image: linear-gradient(0deg, #7409be 50%, #c88ef4)
+}
+
+.footer-list {
+    display: flex;
+    flex-wrap: wrap;
+    margin: 0;
+    padding: 0;
+    padding-top: 160px;
+    gap: 100px;
+    font-weight: 400;
+    font-size: 25px;
+    line-height: 25px;
+    justify-content: center;
+    list-style: none;
+}
+
+.footer-link {
+    text-decoration: none;
+    color: #000000;
+}
+
+.footer-page-text {
+    padding: 0;
+    margin: 0;
+    padding-top: 20px;
+    font-weight: 500;
+    font-size: 25px;
+    line-height: 25px;
+    list-style: none;
+}
+
+.footer-text {
+    padding: 0;
+    margin: 0;
+    padding-top: 20px;
+}
+
+.footer-contacts {
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: center;
+    list-style: none;
+    padding-top: 25px;
+    padding-bottom: 10px;
+}
+
+#vk_icon, #tg_icon, #gmail_icon {
+    color: black;
+}
