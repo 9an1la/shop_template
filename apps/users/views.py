@@ -1,3 +1,10 @@
+from io import BytesIO
+
+import requests
+from allauth.socialaccount.models import SocialAccount
+from django.core import files
+from django.dispatch import receiver
+from allauth.account.signals import user_signed_up
 from django.http import HttpResponse
 from django.shortcuts import render
 from django.contrib.auth import authenticate, login
@@ -59,3 +66,21 @@ def edit(request):
         user_form = UserEditForm(instance=request.user)
         profile_form = ProfileEditForm(instance=request.user.profile)
     return render(request, 'account/edit.html', {'user_form': user_form, 'profile_form': profile_form})
+
+
+@receiver(user_signed_up)
+def user_signed_up(request, user, **kwargs):
+    social_account = SocialAccount.objects.get(user=user)
+    if social_account.provider == 'github':
+        data = social_account.extra_data
+        avatar_url = data['avatar_url']
+        response = requests.get(avatar_url)
+        if response.status_code == 200:
+            avatar_data = BytesIO()
+            avatar_data.write(response.content)
+            avatar_name = avatar_url.split('/')[-1]
+            Profile.objects.create(user=user, photo=files.File(file=avatar_data, name=avatar_name))
+        else:
+            Profile.objects.create(user=user)
+    else:
+        Profile.objects.create(user=user)

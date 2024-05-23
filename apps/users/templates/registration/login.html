@@ -1,4 +1,5 @@
 {% extends 'shop/layout.html' %}
+{% load socialaccount %}
 
 {% block title %}Вход{% endblock %}
 
@@ -9,8 +10,8 @@
             <p>Неверный логин или пароль</p>
         {% endif %}
         <ul>
-            <li class="vk">
-                <a href="{% url 'social:begin' 'vk-oauth2' %}">Вход через VK</a>
+            <li class="github">
+                <a href="{% provider_login_url 'github' %}">Вход через GitHub</a>
             </li>
         </ul>
         <p>Если у вас нету аккаунта, то вы можете его

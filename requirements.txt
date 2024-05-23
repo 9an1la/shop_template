@@ -8,7 +8,7 @@ WeasyPrint
 redis
 djangorestframework
 django-filter
-social-auth-app-django
+django-allauth
 django-extensions
 Werkzeug
 pyOpenSSL
