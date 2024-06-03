@@ -30,7 +30,7 @@ SECRET_KEY = os.environ['SECRET_KEY']
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['shop.com', 'localhost', '127.0.0.1']
+ALLOWED_HOSTS = ['shop.com', 'localhost', '127.0.0.1', 'host.docker.internal']
 
 # Application definition
 
@@ -47,6 +47,7 @@ INSTALLED_APPS = [
     'apps.cart',
     'apps.orders',
     'apps.coupons',
+    'apps.payment',
 
     'rest_framework',
     'django_extensions',
@@ -195,11 +196,6 @@ AUTHENTICATION_BACKENDS = [
     'allauth.account.auth_backends.AuthenticationBackend',
 ]
 
-# OAuth2 for VK
-
-SOCIAL_AUTH_VK_OAUTH2_KEY = os.environ['VK_KEY']
-SOCIAL_AUTH_VK_OAUTH2_SECRET = os.environ['VK_SECRET_KEY']
-
 # cart session key
 CART_SESSION_ID = 'cart'
 
@@ -209,3 +205,9 @@ EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 REDIS_HOST = 'localhost'
 REDIS_PORT = 6379
 REDIS_DB = 0
+
+# Settings params for Stripe
+STRIPE_PUBLISHABLE_KEY = os.environ['STRIPE_PUBLISHABLE_KEY']
+STRIPE_SECRET_KEY = os.environ['STRIPE_SECRET_KEY']
+STRIPE_API_VERSION = '2024-04-10'
+STRIPE_WEBHOOK_SECRET = os.environ['STRIPE_WEBHOOK_SECRET']

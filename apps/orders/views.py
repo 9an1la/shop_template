@@ -1,7 +1,9 @@
 import weasyprint
 from django.http import HttpResponse
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404, redirect
 from django.template.loader import render_to_string
+from django.urls import reverse
+
 from .models import OrderItem, Order
 from .forms import OrderCreateForm
 from apps.cart.cart import Cart
@@ -29,7 +31,9 @@ def order_create(request):
                 )
             cart.clear()
             order_created.delay(order.id)
-            return render(request, 'orders/order_created.html', {'order': order})
+            request.session['order_id'] = order.id
+            return redirect(reverse('payment:process'))
+            # return render(request, 'orders/order_created.html', {'order': order})
     else:
         form = OrderCreateForm()
         return render(request, 'orders/order_create.html', {'cart': cart, 'form': form})

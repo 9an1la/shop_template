@@ -10,5 +10,6 @@ djangorestframework
 django-filter
 django-allauth
 django-extensions
+stripe
 Werkzeug
 pyOpenSSL
